@@ -48,6 +48,5 @@ codes couvert/non couverts par les tests.
 ```
 SAVE Pierre
 LACLAVERE Marco
-wtf we're vibin
 ```
 
