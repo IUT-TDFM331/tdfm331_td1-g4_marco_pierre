@@ -70,28 +70,6 @@ public class ListApiServiceTest {
         Assert.assertTrue(service.getListMeetings().contains(newMeeting));
     }
 
-    /** ADDED
-     * Test to check if a meeting exist
-     */
-    @Test
-    public void FindMeetingTrue() throws MeetingNotFound {
-        List<Employee> listEmployees = Arrays.asList(new Employee("Baptiste", "baptiste@lamzone.com", 4),
-                new Employee("Bilal", "bilal@lamzone.com", 10),
-                new Employee("Vincent", "vincent@lamzone.com", 22));
-
-        Meeting meetingToFound = new Meeting("ProjetX","SalleDeClasse","07/12/21","12:45","12:50","Faut qu'on decide qui va faire l'oral",listEmployees);
-
-        try {
-            Meeting meetingFounsd = service.findByObject(meetingToFound.getObjectMeeting());
-            Assert.assertTrue(meetingFounsd.equals("ProjetX"));
-
-            Meeting meetingFound = service.findByObject(meetingToFound.getObjectMeeting());
-            Assert.assertTrue("ProjetX", true);
-            Assert.assertFalse("ProjetZ", false);
-        } catch (MeetingNotFound e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * Test to check if a selected Meeting is correctly removed from list
@@ -145,7 +123,38 @@ public class ListApiServiceTest {
         } catch (EmployeeNotFound e) {
             e.printStackTrace();
         }
+    }
 
+    /** ADDED
+     * Test to check if a meeting exist
+     */
+    @Test
+    public void findByObject(){
+        // Create list Employee
+        List<Employee> listEmployees = Arrays.asList(
+                new Employee("Baptiste", "baptiste@lamzone.com", 4),
+                new Employee("Bilal", "bilal@lamzone.com", 10),
+                new Employee("Vincent", "vincent@lamzone.com", 22),
+                new Employee("marcouninou", "marco@best.com", 1)
+        );
+
+        // create meeting of ListMeetingsGenerator
+        Meeting meetingToFound=  new Meeting("Kick-off meeting",
+                "Faraday", "08/10/2020",
+                "10:00", "11:00", "Lancement du projet",
+                listEmployees);
+
+        try {
+            Meeting meetingFoundT = service.findByObject(meetingToFound.getObjectMeeting());
+            Meeting meetingFoundF = service.findByObject("");
+            Assert.assertTrue(meetingToFound.getObjectMeeting().equals(meetingToFound.getObjectMeeting()));
+            Assert.assertFalse(meetingToFound.getObjectMeeting().equals(meetingToFound.getObjectMeeting()));
+
+        } catch (MeetingNotFound e) {
+            e.printStackTrace();
+        }
 
     }
+
+
 }
