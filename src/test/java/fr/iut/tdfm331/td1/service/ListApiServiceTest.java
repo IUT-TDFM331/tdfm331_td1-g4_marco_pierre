@@ -146,7 +146,7 @@ public class ListApiServiceTest {
 
         try {
             Meeting meetingFoundT = service.findByObject(meetingToFound.getObjectMeeting());
-            Meeting meetingFoundF = service.findByObject("");
+            Meeting meetingFoundF = service.findByObject("ProjetX");
             Assert.assertTrue(meetingToFound.getObjectMeeting().equals(meetingToFound.getObjectMeeting()));
             Assert.assertFalse(meetingToFound.getObjectMeeting().equals(meetingToFound.getObjectMeeting()));
 
