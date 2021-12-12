@@ -25,7 +25,6 @@ public class Employee {
 
     // Getters
     public String getName() {
-
         return this.name;
     }
 
