@@ -80,15 +80,16 @@ public class ListApiServiceTest {
                 new Employee("Vincent", "vincent@lamzone.com", 22));
 
         Meeting meetingToFound = new Meeting("Réunion de projet","SalleDeClasse","07/12/21","12:45","12:50","Faut qu'on decide qui va faire l'oral",listEmployees);
-        Meeting meetingFound=null;
+        Meeting meetingFound = null;
         try {
             meetingFound = service.findByObject("Réunion de projet");
         } catch (MeetingNotFound e) {
             e.printStackTrace();
         }
 
-        Assert.assertTrue(meetingFound.equals(meetingToFound));
+        Assert.assertEquals("Réunion de projet", meetingFound);
     }
+
     /** ADDED
      * Test to
      */
@@ -120,10 +121,21 @@ public class ListApiServiceTest {
     }
 
     /** ADDED
-     * Test to
+     * Test to add a meeting
      */
     @Test
-    public void name() {
+    public void addMeetingWithSuccess() {
+        //test ajout d'une réunion
+        Meeting meetingToAdd = service.getListMeetings().get(0);
+        service.addMeeting(meetingToAdd);
+        Assert.assertTrue(service.getListMeetings().contains(meetingToAdd));
+    }
+
+    /** ADDED
+     * Test
+     */
+    @Test
+    public void name () {
 
     }
 }
