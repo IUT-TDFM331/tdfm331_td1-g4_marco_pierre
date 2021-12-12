@@ -70,6 +70,9 @@ public class ListApiServiceTest {
         Assert.assertTrue(service.getListMeetings().contains(newMeeting));
     }
 
+
+
+
     /**
      * Test to check if a selected Meeting is correctly removed from list
      */
@@ -80,4 +83,6 @@ public class ListApiServiceTest {
         service.getListMeetings().remove(meetingToRemove);
         Assert.assertFalse(service.getListMeetings().contains(meetingToRemove));
     }
+
+
 }
