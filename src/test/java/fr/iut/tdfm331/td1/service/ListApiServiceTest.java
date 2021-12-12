@@ -71,25 +71,26 @@ public class ListApiServiceTest {
     }
 
     /** ADDED
-     * Test to
+     * Test to check if a meeting exist
      */
     @Test
-    public void FindMeetingTrue() throws MeetingNotFound{
+    public void FindMeetingTrue() throws MeetingNotFound {
         List<Employee> listEmployees = Arrays.asList(new Employee("Baptiste", "baptiste@lamzone.com", 4),
                 new Employee("Bilal", "bilal@lamzone.com", 10),
                 new Employee("Vincent", "vincent@lamzone.com", 22));
 
         Meeting meetingToFound = new Meeting("ProjetX","SalleDeClasse","07/12/21","12:45","12:50","Faut qu'on decide qui va faire l'oral",listEmployees);
-        Meeting meetingFound = null;
 
         try {
-            meetingFound = service.findByObject("ProjetX");
+            Meeting meetingFounsd = service.findByObject(meetingToFound.getObjectMeeting());
+            Assert.assertTrue(meetingFounsd.equals("ProjetX"));
+
+            Meeting meetingFound = service.findByObject(meetingToFound.getObjectMeeting());
+            Assert.assertTrue("ProjetX", true);
+            Assert.assertFalse("ProjetZ", false);
         } catch (MeetingNotFound e) {
             e.printStackTrace();
         }
-
-        Assert.assertTrue("ProjetX", true);
-        Assert.assertFalse("ProjetZ", false);
     }
 
     /**
@@ -138,12 +139,13 @@ public class ListApiServiceTest {
         );
 
         try {
-            Employee nameFound = service.findByName("marcouninou");
-
+            Employee nameFound = service.findByName(listEmployees.get(0).getName());
+            Assert.assertTrue("marcouninou", true);
+            Assert.assertFalse("pierito", false);
         } catch (EmployeeNotFound e) {
             e.printStackTrace();
         }
-        Assert.assertTrue("marcouninou", true);
-        Assert.assertFalse("pierito", false);
+
+
     }
 }
