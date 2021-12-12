@@ -89,6 +89,7 @@ public class ListApiServiceTest {
         }
 
         Assert.assertTrue("ProjetX", true);
+        Assert.assertFalse("ProjetZ", false);
     }
 
     /**
@@ -143,6 +144,6 @@ public class ListApiServiceTest {
             e.printStackTrace();
         }
         Assert.assertTrue("marcouninou", true);
-
+        Assert.assertFalse("pierito", false);
     }
 }
