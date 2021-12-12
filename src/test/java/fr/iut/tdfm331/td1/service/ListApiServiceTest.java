@@ -74,28 +74,21 @@ public class ListApiServiceTest {
      * Test to
      */
     @Test
-    public void FindMeetingTrue() {
+    public void FindMeetingTrue() throws MeetingNotFound{
         List<Employee> listEmployees = Arrays.asList(new Employee("Baptiste", "baptiste@lamzone.com", 4),
                 new Employee("Bilal", "bilal@lamzone.com", 10),
                 new Employee("Vincent", "vincent@lamzone.com", 22));
 
-        Meeting meetingToFound = new Meeting("Réunion de projet","SalleDeClasse","07/12/21","12:45","12:50","Faut qu'on decide qui va faire l'oral",listEmployees);
+        Meeting meetingToFound = new Meeting("ProjetX","SalleDeClasse","07/12/21","12:45","12:50","Faut qu'on decide qui va faire l'oral",listEmployees);
         Meeting meetingFound = null;
+
         try {
-            meetingFound = service.findByObject("Réunion de projet");
+            meetingFound = service.findByObject("ProjetX");
         } catch (MeetingNotFound e) {
             e.printStackTrace();
         }
 
-        Assert.assertEquals("Réunion de projet", meetingFound);
-    }
-
-    /** ADDED
-     * Test to
-     */
-    @Test
-    public void FindMeetingFalse() {
-
+        Assert.assertTrue("ProjetX", true);
     }
 
     /**
@@ -110,14 +103,14 @@ public class ListApiServiceTest {
     }
 
     /** ADDED
-     * Test to
+     * Test to remove a meeting with success
      */
     @Test
     public void realRemoveMeetingWithSuccess() {
-        //vrais suppression de meeting
+        //test ajout d'une réunion
         Meeting meetingToRemove = service.getListMeetings().get(0);
         service.removeMeeting(meetingToRemove);
-        Assert.assertFalse(service.getListMeetings().contains(meetingToRemove));
+        Assert.assertTrue(service.getListMeetings().contains(meetingToRemove));
     }
 
     /** ADDED
@@ -132,10 +125,24 @@ public class ListApiServiceTest {
     }
 
     /** ADDED
-     * Test
+     * Test to find an employee by they name
      */
     @Test
-    public void name () {
+    public void findEmployeByName () throws EmployeeNotFound {
+        List<Employee> listEmployees = Arrays.asList(
+                new Employee("Baptiste", "baptiste@lamzone.com", 4),
+                new Employee("Bilal", "bilal@lamzone.com", 10),
+                new Employee("Vincent", "vincent@lamzone.com", 22),
+                new Employee("marcouninou", "marco@best.com", 1)
+        );
+
+        try {
+            Employee nameFound = service.findByName("marcouninou");
+
+        } catch (EmployeeNotFound e) {
+            e.printStackTrace();
+        }
+        Assert.assertTrue("marcouninou", true);
 
     }
 }
