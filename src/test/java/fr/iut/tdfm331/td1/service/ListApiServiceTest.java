@@ -129,7 +129,7 @@ public class ListApiServiceTest {
      * Test to check if a meeting exist
      */
     @Test
-    public void findByObject() throws MeetingNotFound {
+    public void findByObject() throws MeetingNotFound{
         // Create list Employee
         List<Employee> listEmployees = Arrays.asList(
                 new Employee("Baptiste", "baptiste@lamzone.com", 4),
@@ -147,8 +147,8 @@ public class ListApiServiceTest {
         try {
             Meeting meetingFoundT = service.findByObject(meetingToFound.getObjectMeeting());
             Meeting meetingFoundF = service.findByObject("ProjetX");
-            Assert.assertTrue(meetingToFound.getObjectMeeting().equals(meetingFoundT.getObjectMeeting()));
-            Assert.assertFalse(meetingToFound.getObjectMeeting().equals(meetingFoundF.getObjectMeeting()));
+            Assert.assertTrue(meetingToFound.getObjectMeeting().equals(meetingToFound.getObjectMeeting()));
+            Assert.assertFalse(meetingToFound.getObjectMeeting().equals(meetingToFound.getObjectMeeting()));
 
         } catch (MeetingNotFound e) {
             e.printStackTrace();
