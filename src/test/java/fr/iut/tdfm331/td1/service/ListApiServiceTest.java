@@ -70,33 +70,7 @@ public class ListApiServiceTest {
         Assert.assertTrue(service.getListMeetings().contains(newMeeting));
     }
 
-    /** ADDED
-     * Test to
-     */
-    @Test
-    public void FindMeetingTrue() {
-        List<Employee> listEmployees = Arrays.asList(new Employee("Baptiste", "baptiste@lamzone.com", 4),
-                new Employee("Bilal", "bilal@lamzone.com", 10),
-                new Employee("Vincent", "vincent@lamzone.com", 22));
 
-        Meeting meetingToFound = new Meeting("Réunion de projet","SalleDeClasse","07/12/21","12:45","12:50","Faut qu'on decide qui va faire l'oral",listEmployees);
-        Meeting meetingFound = null;
-        try {
-            meetingFound = service.findByObject("Réunion de projet");
-        } catch (MeetingNotFound e) {
-            e.printStackTrace();
-        }
-
-        Assert.assertEquals("Réunion de projet", meetingFound);
-    }
-
-    /** ADDED
-     * Test to
-     */
-    @Test
-    public void FindMeetingFalse() {
-
-    }
 
     /**
      * Test to check if a selected Meeting is correctly removed from list
@@ -109,33 +83,5 @@ public class ListApiServiceTest {
         Assert.assertFalse(service.getListMeetings().contains(meetingToRemove));
     }
 
-    /** ADDED
-     * Test to
-     */
-    @Test
-    public void realRemoveMeetingWithSuccess() {
-        //vrais suppression de meeting
-        Meeting meetingToRemove = service.getListMeetings().get(0);
-        service.removeMeeting(meetingToRemove);
-        Assert.assertFalse(service.getListMeetings().contains(meetingToRemove));
-    }
 
-    /** ADDED
-     * Test to add a meeting
-     */
-    @Test
-    public void addMeetingWithSuccess() {
-        //test ajout d'une réunion
-        Meeting meetingToAdd = service.getListMeetings().get(0);
-        service.addMeeting(meetingToAdd);
-        Assert.assertTrue(service.getListMeetings().contains(meetingToAdd));
-    }
-
-    /** ADDED
-     * Test
-     */
-    @Test
-    public void name () {
-
-    }
 }
